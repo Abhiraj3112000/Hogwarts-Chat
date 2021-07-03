@@ -3,7 +3,6 @@ import Chat from "./Chat";
 import { db } from "../firebase/firebase";
 import { Form, InputGroup, Button } from "react-bootstrap";
 
-
 const myStyle = {
   border: "2px solid #5aaaff",
   height: "100px",
@@ -27,7 +26,6 @@ const INITIAL_STATE = {
   chat: "",
   newchat: "",
   loaded: false,
-  loadingText: "Loading...",
   chatLimit: 0,
   error: null,
 };
@@ -39,7 +37,6 @@ class ChatContainer extends Component {
   }
 
   componentDidMount() {
-    this.setState({ loadingText: "Changing your names..." });
     window.setTimeout(function () {
       window.location.reload();
     }, 60000);
@@ -101,7 +98,7 @@ class ChatContainer extends Component {
   };
 
   render() {
-    const { newchat, loaded, loadingText } = this.state;
+    const { newchat,loaded } = this.state;
     const invalid = newchat === "";
     return (
       <div style={{ marginBottom: "150px" ,backgroundColor:"#598aba"}}>
@@ -158,33 +155,22 @@ class ChatContainer extends Component {
         </Form>
         <br></br>
         <div className="chat-container">
-          {loaded === true && this.state.chat === "" ? (
-            <h1
-              style={{
-                marginLeft: "5rem",
-                marginBottom: "500px",
-                fontFamily: "Comic Sans MS",
-              }}
-            >
-              No chat present
-            </h1>
-          ) : !loaded ? (
-            <h1
-              style={{
-                marginLeft: "5rem",
-                marginBottom: "500px",
-                fontFamily: "Comic Sans MS",
-              }}
-            >
-              {loadingText}
-            </h1>
-          ) : (
+        { !loaded?
+           <h1
+           style={{
+             marginLeft: "5rem",
+             marginBottom: "500px",
+             fontFamily: "Comic Sans MS",
+           }}
+         >Getting New Names...</h1>
+        :
             this.state.chat.map((thisChat) => (
               <div>
                 <Chat message={thisChat[1]} />
               </div>
             ))
-          )}
+        }
+          
         </div>
       </div>
     );

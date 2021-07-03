@@ -5,7 +5,7 @@ const Nav = () => {
         <div style ={  {
         borderBottom: '1px solid', 
         width:"100%", 
-        zIndex:"1",
+        zIndex:"1000",
         textAlign:"center",
         position:"fixed",
         fontSize:"30px",

@@ -4,9 +4,22 @@ import Nav from './components/Nav.jsx'
 import './App.css'
 import Footer from './components/Footer.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
-function App() {
+import Skeleton from './components/SkeletonLoader.jsx'
+const loaded = false;
+class App extends React.Component {
+  state = {loaded};
+
+  componentDidMount() {    
+        setTimeout(() => this.setState({loaded: true}));    
+  }
+  render(){
   return (
-    <div className="app">
+    !this.state.loaded?
+    <div style={{marginTop:"10%", marginLeft:"15%"}}>
+    <Skeleton/>
+    </div>
+     :
+     <div className="app">
        <Nav/>
        <div className="container">
          <ChatContainer/>
@@ -14,6 +27,7 @@ function App() {
        <Footer/>
     </div>
   )
+}
 }
 
 export default App
