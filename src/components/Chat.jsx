@@ -11,7 +11,7 @@ const Chat = (props) => {
         borderRadius:"10px",
         backgroundColor:"silver",
         fontFamily: "papyrus",
-        boxShadow: "5px 5px 5px 0px rgb(158, 155, 155)"
+        boxShadow: "5px 5px 5px 0px black"
     }
 
     return (

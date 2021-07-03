@@ -13,11 +13,12 @@ const myStyle = {
   fontSize: "1.5rem",
   width: "90%",
   fontFamily: "papyrus",
-  boxShadow: "5px 5px 5px 0px rgb(158, 155, 155)",
+  boxShadow: "5px 5px 5px 0px black",
 };
 const myStyleButton = {
   margin: "0rem 20px 15px 20px",
-  boxShadow: "5px 5px 5px 0px rgb(158, 155, 155)",
+  // boxShadow: "5px 5px 5px 0px rgb(158, 155, 155)",
+  boxShadow: "5px 5px 5px 0px black",
   fontFamily: "papyrus",
   fontWeight: "bold",
 };
@@ -39,7 +40,9 @@ class ChatContainer extends Component {
 
   componentDidMount() {
     this.setState({ loadingText: "Changing your names..." });
-   
+    window.setTimeout(function () {
+      window.location.reload();
+    }, 60000);
   }
 
   componentWillMount() {
@@ -101,15 +104,16 @@ class ChatContainer extends Component {
     const { newchat, loaded, loadingText } = this.state;
     const invalid = newchat === "";
     return (
-      <div style={{ marginBottom: "150px" }}>
+      <div style={{ marginBottom: "150px" ,backgroundColor:"#598aba"}}>
         <Form onSubmit={this.onSubmitText}>
           <center>
-            <h4
+            <h3 
               style={{
                 padding: "100px 0 0 30px",
                 textAlign: "center",
                 fontFamily: "papyrus",
                 fontWeight: "bold",
+                color:"pink",
               }}
             >
               Welcome to Hogwarts Chat, the land of anonimity.
@@ -120,7 +124,7 @@ class ChatContainer extends Component {
               try to get new names, when you are typing or by default every minute but your chat
               remains the same. <br />
               Enjoy chatting :)
-            </h4>
+            </h3>
           </center>
           <InputGroup>
             <Form.Control
