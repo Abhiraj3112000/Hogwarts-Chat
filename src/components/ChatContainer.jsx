@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Chat from "./Chat";
 import { db } from "../firebase/firebase";
 import { Form, InputGroup, Button } from "react-bootstrap";
-import { doc, deleteDoc } from "firebase/firestore";
+
 
 const myStyle = {
   border: "2px solid #5aaaff",
@@ -36,11 +36,10 @@ class ChatContainer extends Component {
   pageReload() {
     window.location.reload();
   }
+
   componentDidMount() {
     this.setState({ loadingText: "Changing your names..." });
-    window.setTimeout(function () {
-      window.location.reload();
-    }, 60000);
+   
   }
 
   componentWillMount() {
@@ -58,6 +57,7 @@ class ChatContainer extends Component {
         console.error(error);
       });
   }
+  
 
   onSubmitText = (event) => {
     const { newchat } = this.state;
@@ -74,7 +74,7 @@ class ChatContainer extends Component {
             .then((snapshot) => {
               if (snapshot.exists()) {
                 this.setState({
-                  chat: Object.entries(snapshot.val()).reverse(),
+                  chat: Object.entries(snapshot.val()).reverse()
                 });
                 this.setState({ newchat: "" });
                 this.setState({ loaded: true });
@@ -117,7 +117,7 @@ class ChatContainer extends Component {
               Your name changes to a different character from Harry Potter
               everytime you reload the page,
               <br />
-              try to get new names or by default every minute but your chat
+              try to get new names, when you are typing or by default every minute but your chat
               remains the same. <br />
               Enjoy chatting :)
             </h4>
