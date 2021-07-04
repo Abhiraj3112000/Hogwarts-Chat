@@ -14,10 +14,11 @@ class App extends React.Component {
   }
   render(){
   return (
-    !this.state.loaded?
-    <div style={{marginTop:"10%", marginLeft:"15%"}}>
+    !this.state.loaded? 
+       <div style={{marginTop:"10%", marginLeft:"15%"}}>
     <Skeleton/>
     </div>
+
      :
      <div className="app">
        <Nav/>

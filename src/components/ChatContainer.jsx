@@ -106,7 +106,7 @@ class ChatContainer extends Component {
           <center>
             <h3 
               style={{
-                padding: "100px 0 0 30px",
+                padding: "50px 0 30px 30px",
                 textAlign: "center",
                 fontFamily: "papyrus",
                 fontWeight: "bold",

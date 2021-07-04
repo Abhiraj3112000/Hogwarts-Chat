@@ -1,3 +1,110 @@
 .app{
   background-color:  #598aba;
 }
+/* HEADER with drop-shadow on scroll */
+header {
+  height: 80px;  /* 64 + 16px */
+  position: sticky;
+  -webkit-position: sticky;
+  /* negative top allows for 16 pixels of movement before sticking */
+  top: -16px; 
+  /* make sure header overlaps main*/
+  z-index: 1;
+  color: white;
+  text-align: center;
+  /* fix weird flickering issue in chrome: https://stackoverflow.com/a/22224884/286685 */
+  -webkit-backface-visibility: hidden;
+}
+
+/* PSEUDO ELEMENTS to create drop-shadow */
+header::before,
+header::after {
+  content: '';
+  display: block;
+  height: 16px;
+  /* make pseudo elements sticky as well */
+  position: sticky;
+  -webkit-position: sticky;
+}
+
+/* SHADOW */
+header::before {
+  top: 48px; /* shadow is at bottom of element, so at 48 + 16 = 64px */
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+}
+
+/* COVER */
+header::after {
+  /* linear gradient from background color to transparent acts as
+     a transition effect so the shadow appears gradually */
+  background: linear-gradient(#598aba 10%, #598aba 50%, #598aba 70%, transparent);
+  top: 0;
+  /* cover should fall over shadow */
+  z-index: 2;
+}
+
+/* HEADER CONTENT */
+header >div {
+  background-color:  #bdbdbd;
+  height: 64px;
+  padding: 20px;
+  position: sticky;
+  -webkit-position: sticky;
+  top: 0px;
+  /* compensate for shadow with negative margin */
+  margin-top: -16px;
+  /* content should fall over shadow and cover */
+  z-index: 3;
+}
+
+header >div h3 {
+  margin: 0;
+}
+
+main {
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.big {
+  font-size: 27px;
+}
+
+main h1,
+.big {
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  main {
+    width: 600px;
+    font-size: 18px;
+  }
+
+  .big {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  main {
+    width: 90%;
+    font-size: 17px;
+  }
+
+  .big {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    font-size: 16px;
+  }
+
+  .big {
+    font-size: 21px;
+  }
+}
